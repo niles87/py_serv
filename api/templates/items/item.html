@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block header %}
+<h1>{% block title %}Edit "{{ item['name'] }}"{% endblock %}</h1>
+{% endblock %} {% block content %}
+<div>
+  <div>
+    <h1>{{ item['name'] }}</h1>
+    <div>
+      <p>{{ item['description'] }}</p>
+      <p>Price: ${{ item['price'] }}</p>
+      {% if item['stock'] < 10 %}
+      <p>Only {{ item['stock'] }} remaining</p>
+      {% else %}
+      <p>Stock: {{ item['stock'] }}</p>
+      {% endif %}
+    </div>
+  </div>
+  <form method="post">
+    <label for="amount">amount</label>
+    <input
+      type="number"
+      id="amount"
+      value="{{ request.form['amount'] or 0 }}"
+    />
+    <input type="number" value="{{ request.form['stock'] }}" hidden />
+    <input type="submit" value="Add" />
+  </form>
+</div>
+{% endblock %}
