@@ -54,4 +54,4 @@ def update(id):
             db.commit()
             return redirect(url_for('items.index'))
 
-    return render_template('items.item', item=item)
+    return render_template('items/item.html', item=item)
